@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  --color-sun: #FDEB9E;
+  --color-sun-dark: #F5D96A;
+  --color-mint: #7AE2CF;
+  --color-mint-dark: #4BCFBA;
+  --color-ocean: #077A7D;
+  --color-ocean-light: #0A9EA2;
+  --color-deep: #06202B;
+  --color-deep-light: #0C3547;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 4px 24px rgba(6, 32, 43, 0.08);
+  --shadow-card-hover: 0 8px 40px rgba(6, 32, 43, 0.15);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-deep);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-mint);
+  color: var(--color-deep);
+}
+
+/* Focus rings — visible for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--color-ocean);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Ensure clickable elements signal intent */
+button, [role="button"], a, label[for], select {
+  cursor: pointer;
+}
+
+/* Prevent pull-to-refresh conflicts on mobile */
+body {
+  overscroll-behavior-y: none;
+}
+
+/* Respect system reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Wave divider utility */
+.wave-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-top {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}

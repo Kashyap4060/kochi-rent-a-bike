@@ -3,6 +3,5 @@ dist
 .env
 .env.local
 *.local
-src/generated/fleet-manifest.json
 
 .vercel

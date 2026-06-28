@@ -1,8 +1,21 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'motion/react'
-import { Users, Star, Calendar, ShieldCheck } from 'lucide-react'
+import { Users, Star, Calendar, ShieldCheck, MapPin } from 'lucide-react'
 import { business } from '@/data/business'
 import ImageCarousel from '@/components/ui/ImageCarousel'
+
+const visitPlaces = [
+  { name: 'Fort Kochi – Old Streets by the Water', file: 'fort-kochi' },
+  { name: 'Mattancherry Palace, Synagogue & Spices', file: 'mattancherry-palace' },
+  { name: 'Kumbalangi Backwaters and Village Life', file: 'kumbalangi-backwaters' },
+  { name: 'Cherai Beach', file: 'cherai-beach' },
+  { name: 'Bolgatty Island & Marine Drive', file: 'bolgatty-island' },
+  { name: 'Hill Palace, Tripunithura Royal Kochi', file: 'hill-palace' },
+  { name: 'Edappally & Lulu Mall Modern Kochi', file: 'edappally-lulu-mall' },
+  { name: 'Aluva and the Periyar', file: 'aluva-periyar' },
+  { name: 'Puthuvype Lighthouse & Beach', file: 'puthuvype-lighthouse' },
+  { name: 'Malayattoor – Hill, Church, and Calm', file: 'malayattoor' },
+]
 
 const heroImages = [
   '/images/hero/pexels-gautham-krishna-s-481986740-28002932.jpg',
@@ -135,7 +148,7 @@ export default function About() {
         </div>
 
         {/* Mission + Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
           <div
             className="rounded-2xl p-8"
             style={{ background: 'white', boxShadow: 'var(--shadow-card)', borderLeft: '4px solid var(--color-ocean)' }}
@@ -153,6 +166,65 @@ export default function About() {
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>
               To be Kochi's most trusted and loved local bike rental — the first name people think of whenever they need to get around this beautiful city on two wheels.
             </p>
+          </div>
+        </div>
+
+        {/* Places to Visit */}
+        <div>
+          <div className="text-center mb-10">
+            <span
+              className="inline-block text-xs font-bold tracking-widest uppercase mb-4 px-4 py-1.5 rounded-full"
+              style={{ background: 'var(--color-mint)', color: 'var(--color-deep)' }}
+            >
+              Explore Kochi
+            </span>
+            <h2 className="text-3xl font-extrabold mb-3" style={{ color: 'var(--color-deep)' }}>
+              Places to Visit
+            </h2>
+            <p className="text-base max-w-xl mx-auto" style={{ color: 'rgba(6,32,43,0.6)' }}>
+              Hop on a bike and discover the magic of Kochi — from ancient streets to serene backwaters.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {visitPlaces.map(({ name, file }, i) => (
+              <motion.div
+                key={file}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.05 * i }}
+                className="group relative rounded-2xl overflow-hidden cursor-default"
+                style={{ boxShadow: 'var(--shadow-card)' }}
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={`/images/visit-places/${file}.jpg`}
+                    alt={name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </div>
+                {/* Gradient overlay */}
+                <div
+                  className="absolute inset-0 transition-opacity duration-300"
+                  style={{
+                    background: 'linear-gradient(to top, rgba(6,32,43,0.85) 0%, rgba(6,32,43,0.2) 50%, transparent 100%)',
+                  }}
+                />
+                {/* Place name */}
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="flex items-start gap-2">
+                    <MapPin
+                      className="w-4 h-4 mt-0.5 shrink-0"
+                      style={{ color: 'var(--color-mint)' }}
+                    />
+                    <span className="text-sm font-bold leading-snug text-white">
+                      {name}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
